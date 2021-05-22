@@ -110,22 +110,22 @@ function userInputs() {
     upperChars: hasUpperChars,
     lowerChars: hasLowerChars,
     numbers: hasNumbers,
-    specialChar: hasSpecialChars
+    specialChars: hasSpecialChars
   };
   return allChars;
-  // if (passwordLength < 8 || passwordLength > 128 || isNaN(passwordLength)) {
+  if (passwordLength < 8 || passwordLength > 128) {
 
-  //   alert("Password length must be a number between 8 and 128 characters.");
+    alert("Please provide a valid password length between 8 and 128");
 
-  //   return;
+    return;
 
-  // }
+  }
   
 }
 
 
 // Write password to the #password input
-// function writePassword() {
+function writePassword() {
 
   var userOptions = userInputs();
   var possibleChars = [];
@@ -135,14 +135,19 @@ function userInputs() {
   if (userOptions.lowerChars) {
     possibleChars = possibleChars.concat(lowerChars);
   }
+  if (userOptions.numbers) {
+    possibleChars = possibleChars.concat(numbers);
+  }
+  if (userOptions.specialChars) {
+    possibleChars = possibleChars.concat(specialChars);
+  }
   
-  console.log(userOptions);
-  // var password = generatePassword();
-  // var passwordText = document.querySelector("#password");
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
 
-  // passwordText.value = password;
+  passwordText.value = password;
 
-// }
+}
 
 // Add event listener to generate button
-// generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", writePassword);
