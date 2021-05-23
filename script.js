@@ -121,8 +121,8 @@ function generatePassword() {
 
   var userOptions = userInputs();
 
-
-  if (passwordLength < 8 || passwordLength > 128) {
+  
+  if (userOptions.length< 8 ||  userOptions.length > 128) {
 
     alert("Please provide a valid password length between 8 and 128");
 
@@ -143,17 +143,24 @@ function generatePassword() {
   if (userOptions.specialChars) {
     possibleChars = possibleChars.concat(specialChars);
   }
+  console.log(possibleChars);
+  
+  var randomizePassword = collectRandomChars(userOptions.length,possibleChars);
+
+  return randomizePassword;
+  
 
   
   
 
 }
-// Collect random characters one at a time from `possibleChars` until the length = `userOptions.length`
-function collectRandomChars(length,characters) {
-  var allCharsCombied = "";
-  for (var i = 0; i < userOptions.length; i++) {
 
-    var randomChars = Math.floor(Math.random() * userOptions.length);
+// Collect random characters one at a time from `possibleChars` until the length = `userOptions.length`
+function collectRandomChars(stringLength,characters) {
+  var allCharsCombied = "";
+  for (var i = 0; i < stringLength; i++) {
+
+    var randomChars = Math.floor(Math.random() * characters.length);
     allCharsCombied += characters[randomChars];
   }
   return allCharsCombied;
