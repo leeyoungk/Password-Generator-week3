@@ -121,7 +121,7 @@ function generatePassword() {
 
   var userOptions = userInputs();
 
-  
+  // Valited passwordLength to verify it was between 8 and 128 characters
   if (userOptions.length< 8 ||  userOptions.length > 128) {
 
     alert("Please provide a valid password length between 8 and 128");
@@ -129,7 +129,7 @@ function generatePassword() {
     return "";
 
   }
-
+//  Asked for all type of characters user will want to use in their password
   var possibleChars = [];
   if (userOptions.upperChars) {
     possibleChars = possibleChars.concat(upperChars);
@@ -144,7 +144,7 @@ function generatePassword() {
     possibleChars = possibleChars.concat(specialChars);
   }
   console.log(possibleChars);
-  
+
   var randomizePassword = collectRandomChars(userOptions.length,possibleChars);
 
   return randomizePassword;
