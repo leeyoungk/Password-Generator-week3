@@ -104,7 +104,7 @@ function userInputs() {
   var hasSpecialChars = confirm("do you want to choose special characters?");
  
 
-  // Store all variable characters in an Array
+  // Store all variable characters in an Object
   var allChars = {
     length: passwordLength,
     upperChars: hasUpperChars,
@@ -113,21 +113,23 @@ function userInputs() {
     specialChars: hasSpecialChars
   };
   return allChars;
+  
+}
+
+function generatePassword() {
+
+
+  var userOptions = userInputs();
+
+
   if (passwordLength < 8 || passwordLength > 128) {
 
     alert("Please provide a valid password length between 8 and 128");
 
-    return;
+    return "";
 
   }
-  
-}
 
-
-// Write password to the #password input
-function writePassword() {
-
-  var userOptions = userInputs();
   var possibleChars = [];
   if (userOptions.upperChars) {
     possibleChars = possibleChars.concat(upperChars);
@@ -141,6 +143,26 @@ function writePassword() {
   if (userOptions.specialChars) {
     possibleChars = possibleChars.concat(specialChars);
   }
+
+  
+  
+
+}
+// Collect random characters one at a time from `possibleChars` until the length = `userOptions.length`
+function collectRandomChars(length,characters) {
+  var allCharsCombied = "";
+  for (var i = 0; i < userOptions.length; i++) {
+
+    var randomChars = Math.floor(Math.random() * userOptions.length);
+    allCharsCombied += characters[randomChars];
+  }
+  return allCharsCombied;
+
+}
+
+
+// Write password to the #password input
+function writePassword() {
   
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
